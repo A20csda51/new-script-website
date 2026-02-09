@@ -109,11 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
-                    'HTTP-Referer': window.location.href, // Required for OpenRouter
-                    'X-Title': 'ScriptCraft AI' // Optional for OpenRouter
+                    'HTTP-Referer': 'https://github.com/A20csda51/new-script-website', // Use a valid URL
+                    'X-Title': 'ScriptCraft AI'
                 },
                 body: JSON.stringify({
-                    model: "deepseek/deepseek-chat", // OpenRouter model ID
+                    model: "deepseek/deepseek-chat",
                     messages: [
                         { role: "system", content: systemPrompt },
                         { role: "user", content: userPrompt }
@@ -124,7 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!response.ok) {
                 const errData = await response.json();
-                throw new Error(errData.error?.message || "API Request Failed");
+                console.error("API Error:", errData);
+                throw new Error(errData.error?.message || `API Error: ${response.status} ${response.statusText} - ${JSON.stringify(errData)}`);
             }
 
             const data = await response.json();
