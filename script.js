@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const keyPoints = document.getElementById('keyPoints');
 
     // Default Key (User Provided) - In a real app, strict handling. For this demo, accessible.
-    let DEEPSEEK_API_KEY = localStorage.getItem('deepseek_api_key') || "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";
+    let DEEPSEEK_API_KEY = localStorage.getItem('deepseek_api_key') || "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";
 
     // Initialize Input
     apiKeyInput.value = DEEPSEEK_API_KEY;
