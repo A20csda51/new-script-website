@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
+
 <body class="bg-black text-white font-['Outfit'] antialiased selection:bg-yellow-500 selection:text-black">
 
     <div class="fixed inset-0 z-[-1]">
@@ -19,43 +21,45 @@
     </div>
 
     <div class="container mx-auto px-4 py-8 min-h-screen flex flex-col">
-        
+
         <!-- Header -->
         <header class="flex justify-between items-center mb-12">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-tr from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg shadow-yellow-500/20">
+                <div
+                    class="w-10 h-10 bg-gradient-to-tr from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg shadow-yellow-500/20">
                     <i class="fa-solid fa-play text-white text-lg"></i>
                 </div>
                 <h1 class="text-2xl font-bold tracking-tight">ScriptCraft <span class="text-yellow-500">AI</span></h1>
             </div>
-            <button id="settingsBtn" class="text-gray-400 hover:text-white transition-colors">
-                <i class="fa-solid fa-gear text-xl"></i>
-            </button>
+
         </header>
 
         <!-- Main Content -->
         <main class="flex-grow grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 relative">
-            
+
             <!-- Input Section -->
             <div class="space-y-6 animate-fade-in-up">
                 <div class="glass-panel p-6 rounded-2xl border border-white/10 relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
+                    <div
+                        class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+
                     <h2 class="text-lg font-semibold mb-4 text-gray-200 flex items-center gap-2">
                         <i class="fa-solid fa-pen-nib text-yellow-500"></i> Video Details
                     </h2>
-                    
+
                     <div class="space-y-4 relative z-10">
                         <div>
                             <label class="block text-sm text-gray-400 mb-1.5">Video Title</label>
-                            <input type="text" id="videoTitle" placeholder="e.g., The Future of AI in 2025" 
+                            <input type="text" id="videoTitle" placeholder="e.g., The Future of AI in 2025"
                                 class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/50 transition-all placeholder-gray-600">
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm text-gray-400 mb-1.5">Tone</label>
-                                <select id="videoTone" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/50 transition-all text-gray-300">
+                                <select id="videoTone"
+                                    class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/50 transition-all text-gray-300">
                                     <option value="Engaging & High Energy">⚡ High Energy</option>
                                     <option value="Professional & Educational">🎓 Educational</option>
                                     <option value="Funny & Entertaining">😂 Funny</option>
@@ -65,48 +69,59 @@
                             </div>
                             <div>
                                 <label class="block text-sm text-gray-400 mb-1.5">Target Audience</label>
-                                <input type="text" id="targetAudience" placeholder="e.g., Tech Enthusiasts" 
+                                <input type="text" id="targetAudience" placeholder="e.g., Tech Enthusiasts"
                                     class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/50 transition-all placeholder-gray-600">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-sm text-gray-400 mb-1.5">Key Points / Outline</label>
-                            <textarea id="keyPoints" rows="5" placeholder="- Check DeepSeek API&#10;- Setup Project&#10;- Build UI&#10;- Test Generation" 
+                            <textarea id="keyPoints" rows="5"
+                                placeholder="- Check DeepSeek API&#10;- Setup Project&#10;- Build UI&#10;- Test Generation"
                                 class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/50 transition-all placeholder-gray-600 resize-none"></textarea>
                         </div>
                     </div>
                 </div>
 
-                <button id="generateBtn" class="w-full py-4 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-xl font-bold text-black shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden">
+                <button id="generateBtn"
+                    class="w-full py-4 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-xl font-bold text-black shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden">
                     <span class="relative z-10 flex items-center gap-2">
                         <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Script
                     </span>
-                    <div class="absolute inset-0 bg-white/20 translate-y-full hover:translate-y-0 transition-transform duration-300"></div>
+                    <div
+                        class="absolute inset-0 bg-white/20 translate-y-full hover:translate-y-0 transition-transform duration-300">
+                    </div>
                 </button>
             </div>
 
             <!-- Output Section -->
             <div class="relative animate-fade-in-up delay-100 h-full min-h-[500px]">
-                <div class="glass-panel p-6 rounded-2xl border border-white/10 h-full flex flex-col relative overflow-hidden">
+                <div
+                    class="glass-panel p-6 rounded-2xl border border-white/10 h-full flex flex-col relative overflow-hidden">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-lg font-semibold text-gray-200 flex items-center gap-2">
                             <i class="fa-solid fa-scroll text-blue-400"></i> Generated Script
                         </h2>
-                        <button id="copyBtn" class="text-xs bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-white/5 transition-colors flex items-center gap-2 opacity-50 cursor-not-allowed" disabled>
+                        <button id="copyBtn"
+                            class="text-xs bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-white/5 transition-colors flex items-center gap-2 opacity-50 cursor-not-allowed"
+                            disabled>
                             <i class="fa-regular fa-copy"></i> Copy
                         </button>
                     </div>
 
-                    <div id="loadingState" class="hidden absolute inset-0 bg-black/60 backdrop-blur-sm z-20 flex flex-col items-center justify-center">
+                    <div id="loadingState"
+                        class="hidden absolute inset-0 bg-black/60 backdrop-blur-sm z-20 flex flex-col items-center justify-center">
                         <div class="relative w-16 h-16">
                             <div class="absolute inset-0 border-4 border-white/10 rounded-full"></div>
-                            <div class="absolute inset-0 border-4 border-yellow-500 rounded-full border-t-transparent animate-spin"></div>
+                            <div
+                                class="absolute inset-0 border-4 border-yellow-500 rounded-full border-t-transparent animate-spin">
+                            </div>
                         </div>
                         <p class="mt-4 text-yellow-500 font-medium animate-pulse">Crafting your masterpiece...</p>
                     </div>
 
-                    <div id="outputArea" class="flex-grow bg-black/40 rounded-xl border border-white/5 p-6 overflow-y-auto prose prose-invert prose-yellow max-w-none text-gray-300 custom-scrollbar">
+                    <div id="outputArea"
+                        class="flex-grow bg-black/40 rounded-xl border border-white/5 p-6 overflow-y-auto prose prose-invert prose-yellow max-w-none text-gray-300 custom-scrollbar">
                         <div class="h-full flex flex-col items-center justify-center text-gray-600 text-center">
                             <i class="fa-solid fa-robot text-4xl mb-3 opacity-20"></i>
                             <p>Ready to generate. Fill in the details and hit the magic button.</p>
@@ -116,45 +131,17 @@
             </div>
 
         </main>
-        
+
         <footer class="mt-12 text-center text-gray-600 text-sm py-6">
             <p>&copy; 2026 ScriptCraft AI. Powered by DeepSeek.</p>
         </footer>
 
     </div>
 
-    <!-- Settings Modal -->
-    <div id="settingsModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-[#1a1a1a] border border-white/10 rounded-2xl p-6 w-full max-w-md shadow-2xl transform scale-95 transition-transform duration-300" id="modalContent">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold text-white">Settings</h3>
-                <button id="closeSettings" class="text-gray-400 hover:text-white">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-            
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm text-gray-400 mb-1.5">DeepSeek API Key</label>
-                    <div class="relative">
-                        <input type="password" id="apiKeyInput" value="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" 
-                            class="w-full bg-black/40 border border-white/10 rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/50 transition-all text-gray-300 placeholder-gray-600 font-mono text-sm">
-                        <button id="toggleApiKey" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300">
-                            <i class="fa-regular fa-eye"></i>
-                        </button>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-2">Your key is stored locally in your browser.</p>
-                </div>
-            </div>
 
-            <div class="mt-8 flex justify-end">
-                <button id="saveSettings" class="bg-white text-black px-6 py-2.5 rounded-xl font-semibold hover:bg-gray-200 transition-colors">
-                    Save Changes
-                </button>
-            </div>
-        </div>
-    </div>
+
 
     <script src="script.js"></script>
 </body>
+
 </html>
