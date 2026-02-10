@@ -6,16 +6,20 @@ export default async function handler(req, res) {
     }
 
     // 2. Get API Key from Environment
-    const apiKey = process.env.DEEPSEEK_API_KEY;
+    const rawApiKey = process.env.DEEPSEEK_API_KEY;
 
-    if (!apiKey) {
-        console.error("Critical: DEEPSEEK_API_KEY is missing from environment variables.");
-        return res.status(500).json({ error: 'Server Configuration Error: Missing API Key' });
+    if (!rawApiKey) {
+        return res.status(500).json({ error: 'Configuration Error: DEEPSEEK_API_KEY is missing.' });
     }
 
-    // Safe logging to help user debug (only shows last 4 chars)
-    const safeKey = apiKey.trim(); // Remove any potential whitespace
-    console.log(`Using API Key ending in ...${safeKey.slice(-4)}`);
+    // SANITIZATION: Remove whitespace AND quotes (common copy-paste error)
+    const safeKey = rawApiKey.trim().replace(/^['"]|['"]$/g, '');
+
+    console.log(`API Key check: ...${safeKey.slice(-4)} (Length: ${safeKey.length})`);
+
+    // Detect the URL for the Referer header (Priority: Origin header -> Vercel URL -> Fallback)
+    // OpenRouter requires a valid URL here.
+    const siteUrl = req.headers.origin || req.headers.referer || `https://${process.env.VERCEL_URL}` || 'https://scriptcraft-ai.vercel.app';
 
     try {
         const { systemPrompt, userPrompt } = req.body;
@@ -25,9 +29,9 @@ export default async function handler(req, res) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${safeKey}`, // Use trimmed key
-                'HTTP-Referer': `https://${process.env.VERCEL_URL || 'scriptcraft-ai.vercel.app'}`, // Use Vercel URL or fallback
-                'X-Title': 'ScriptCraft AI'
+                'Authorization': `Bearer ${safeKey}`,
+                'HTTP-Referer': siteUrl, // Required by OpenRouter
+                'X-Title': 'ScriptCraft AI' // Required by OpenRouter
             },
             body: JSON.stringify({
                 model: "deepseek/deepseek-chat",
@@ -39,24 +43,23 @@ export default async function handler(req, res) {
             })
         });
 
-        // 4. Handle Errors from OpenRouter
+        // 4. Handle Errors
         if (!response.ok) {
             const errorText = await response.text();
-            console.error("OpenRouter API Error:", response.status, errorText);
+            console.error("OpenRouter Error:", response.status, errorText);
             try {
                 const errorJson = JSON.parse(errorText);
-                throw new Error(errorJson.error?.message || `OpenRouter Error: ${response.status}`);
+                throw new Error(errorJson.error?.message || `Provider Error: ${response.status}`);
             } catch (e) {
-                throw new Error(`OpenRouter Error: ${response.status} - ${errorText}`);
+                throw new Error(`Provider Error: ${response.status} - ${errorText}`);
             }
         }
 
-        // 5. Return Success
         const data = await response.json();
         return res.status(200).json(data);
 
     } catch (error) {
-        console.error("Backend Handler Error:", error);
+        console.error("Handler Error:", error);
         return res.status(500).json({ error: error.message || 'Internal Server Error' });
     }
 }
